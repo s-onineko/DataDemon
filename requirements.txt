@@ -1,10 +1,7 @@
-streamlit
-Image
-pandas
-plotly.express
-plotly
-matplotlib
-warnings
 pycaret
+streamlit
+pandas
+numpy
+warnings
 pycaret.classification
 sklearn.datasets
