@@ -1,0 +1,6 @@
+﻿streamlit
+Image
+pandas
+plotly.express
+plotly
+matplotlib
