@@ -2,6 +2,12 @@
 import streamlit as st
 import pandas
 import numpy
+import warnings
+warnings.filterwarnings("ignore")
+from pycaret.classification import *
+from sklearn.datasets import load_iris
+import pandas as pd
+
 
 st.title('Data Demon')
 
@@ -65,17 +71,9 @@ def file_selector(folder_path='.'):
     selected_filename = st.selectbox('Select a file', filenames)
     return os.path.join(folder_path, selected_filename)
 
-
-
-import warnings
-# 不要な警告文消すよ
-warnings.filterwarnings("ignore")
-# 今回の主役！PyCaretを読み込みます。
-from pycaret.classification import *
-# Irisデータセットを読み込みます。
-from sklearn.datasets import load_iris
-# データフレーム扱うのでPandasも読み込みます。
-import pandas as pd
+##########################################################################################
+#                                         Pycaret                                        #
+##########################################################################################
 
 iris = load_iris()
 X = pd.DataFrame(iris.data, columns=iris.feature_names)
