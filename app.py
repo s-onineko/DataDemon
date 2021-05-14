@@ -67,31 +67,25 @@ def file_selector(folder_path='.'):
 
 
 
-df_clst = pd.DataFrame({'q_1' : int(q1),
-                        'q_2' : int(q2),
-                        'q_3' : int(q3),
-                        'q_4' : int(q4),
-                        'q_5' : int(q5),
-                        'q_6' : int(q6),
-                        'q_7' : int(q7),
-                        'q_8' : int(q8),
-                        'q_9' : int(q9),
-                        'q_10' : int(q10),
-                        'q_11' : int(q11),
-                        'q_12' : int(q12),
-                        'q_13' : int(q13),
-                        'q_14' : int(q14),
-                        'q_15' : int(q15),
-                        'q_16' : int(q16),
-                        'q_17' : int(q17),
-                        'q_18' : int(q18),
-                        'q_19' : int(q19),
-                        'q_20' : int(q20),
-                        'q_21' : int(q21),
-                        'q_22' : int(q22),
-                        'q_23' : int(q23)},index=['answer',])
+import warnings
+# 不要な警告文消すよ
+warnings.filterwarnings("ignore")
+# 今回の主役！PyCaretを読み込みます。
+from pycaret.classification import *
+# Irisデータセットを読み込みます。
+from sklearn.datasets import load_iris
+# データフレーム扱うのでPandasも読み込みます。
+import pandas as pd
+
+iris = load_iris()
+X = pd.DataFrame(iris.data, columns=iris.feature_names)
+y = pd.DataFrame(iris.target, columns=["target"])
+df = pd.concat([X,y], axis=1)
+
+
 dt_now = datetime.datetime.now()
-time = dt_now.strftime('%Y%m%d %H%M')        
+time = dt_now.strftime('%Y%m%d %H%M')
+
 
 if st.checkbox('回答結果をダウンロードするにはチェックを入れてください'):
     st.write('ファイル名を入力後、ダウンロードボタンを押してください。ダウンロードしたファイルは「欲求フラグ判定結果」モードでレーダーチャートとして可視化できます。')
