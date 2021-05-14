@@ -80,11 +80,6 @@ X = pd.DataFrame(iris.data, columns=iris.feature_names)
 y = pd.DataFrame(iris.target, columns=["target"])
 df = pd.concat([X,y], axis=1)
 
-
-dt_now = datetime.datetime.now()
-time = dt_now.strftime('%Y%m%d %H%M')
-
-
 if st.checkbox('回答結果をダウンロードするにはチェックを入れてください'):
     st.write('ファイル名を入力後、ダウンロードボタンを押してください。ダウンロードしたファイルは「欲求フラグ判定結果」モードでレーダーチャートとして可視化できます。')
     # Enter text for testing
