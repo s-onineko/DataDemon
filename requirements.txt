@@ -2,6 +2,4 @@ pycaret
 streamlit
 pandas
 numpy
-warnings
-pycaret.classification
 sklearn.datasets
