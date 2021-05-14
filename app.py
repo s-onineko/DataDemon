@@ -3,5 +3,5 @@ import streamlit as st
 import pandas
 import numpy
 
-st.title('DataDemon')
+st.title('Data Demon')
 
