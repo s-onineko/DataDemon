@@ -103,6 +103,6 @@ if st.checkbox('回答結果をダウンロードするにはチェックを入�
     sample_dtypes = sample_dtypes
 
     # Download sample
-    download_button_str = download_button(sample_dtypes[s].T, filename, f'Click here to download {filename}', pickle_it=False)
+    download_button_str = download_button(sample_dtypes[s], filename, f'Click here to download {filename}', pickle_it=False)
     st.markdown(download_button_str, unsafe_allow_html=True)
 
