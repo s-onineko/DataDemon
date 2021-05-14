@@ -87,8 +87,8 @@ X = pd.DataFrame(iris.data, columns=iris.feature_names)
 y = pd.DataFrame(iris.target, columns=["target"])
 df = pd.concat([X,y], axis=1)
 
-if st.checkbox('回答結果をダウンロードするにはチェックを入れてください'):
-    st.write('ファイル名を入力後、ダウンロードボタンを押してください。ダウンロードしたファイルは「欲求フラグ判定結果」モードでレーダーチャートとして可視化できます。')
+if st.checkbox('テストデータをダウンロードするにはチェックを入れてください'):
+    st.write('ファイル名を入力後、ダウンロードボタンを押してください。ダウンロードしたファイルを用いてテストすることができます。')
     # Enter text for testing
     s = 'pd.DataFrame'
     filename = st.text_input('Enter output filename and ext (e.g. my-question.csv, )', 'my-question.csv')
