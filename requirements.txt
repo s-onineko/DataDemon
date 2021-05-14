@@ -1,6 +1,10 @@
-﻿streamlit
+streamlit
 Image
 pandas
 plotly.express
 plotly
 matplotlib
+warnings
+pycaret
+pycaret.classification
+sklearn.datasets
