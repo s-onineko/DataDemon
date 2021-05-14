@@ -2,4 +2,4 @@ pycaret
 streamlit
 pandas
 numpy
-sklearn.datasets
+sklearn
