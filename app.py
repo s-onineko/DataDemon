@@ -92,7 +92,7 @@ if st.checkbox('回答結果をダウンロードするにはチェックを入�
                      'float': 17.0,
                      'dict': {1: 'a', 'x': [2, 'c'], 2: {'b': 2}},
                      'bool': True,
-                     'pd.DataFrame': df_clst}
+                     'pd.DataFrame': df}
     sample_dtypes = sample_dtypes
 
     # Download sample
