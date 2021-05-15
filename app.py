@@ -88,6 +88,7 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
                      'bool': True,
                      'pd.DataFrame':train_data}
     sample_dtypes = sample_dtypes
+    st.write("テストデータは正解ラベル付きです。実際に予測する場合はデータを削除して実施してください")
     # Download sample
     download_button_str = download_button(sample_dtypes[s], "amazon_aws_traindata.csv", 'Click here to download amazon_aws_traindata.csv')
     st.markdown(download_button_str, unsafe_allow_html=True)
@@ -102,7 +103,7 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
                      'pd.DataFrame':test_data}
     sample_dtypes = sample_dtypes
     # Download sample
-    download_button_str = download_button(sample_dtypes[s], "amazon_aws_testdata.csv", 'Click here to download {"amazon_aws_testdata.csv')
+    download_button_str = download_button(sample_dtypes[s], "amazon_aws_testdata.csv", 'Click here to download amazon_aws_testdata.csv')
     st.markdown(download_button_str, unsafe_allow_html=True)
 
 ##########################################################################################
