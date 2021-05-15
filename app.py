@@ -116,6 +116,6 @@ features = st.multiselect("説明変数を選択してください",list(df.colu
 df_list = [target] + features
 df = df.loc[:,df_list]
 #exp1 = setup(df, target = target)
-best_model = compare_models()
+best_model = compare_models(n_select=6)
 #st.table(compare_models())
 
