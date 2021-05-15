@@ -8,3 +8,6 @@ datetime
 lightgbm
 torch==1.6.0
 fastai==2.*
+xgboost
+mxnet --upgrade
+mxnet_cu101 --upgrade
