@@ -30,7 +30,7 @@ def download_button(object_to_download, download_filename, button_text, pickle_i
             object_to_download = object_to_download.to_csv(index=True)
         # Try JSON encode for everything else
         else:
-            object_to_download = json.dumps(object_to_download)
+            object_to_download = object_to_download.to_csv(index=True)
     try:
         # some strings <-> bytes conversions necessary here
         b64 = base64.b64encode(object_to_download.encode()).decode()
@@ -105,41 +105,46 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
     st.markdown(download_button_str, unsafe_allow_html=True)
 
 ##########################################################################################
-#                                         Train                                          #
+#                                       Load_dataset                                     #
 ##########################################################################################
 train_data = st.file_uploader("教師データを読み込んでください",type = "csv")
+test_data = st.file_uploader("テストデータを読み込んでください",type = "csv")
 df_train = pd.read_csv(train_data)
+df_test = pd.read_csv(test_data)
 # 読み込んだデータのサマリー
 st.dataframe(df_train.head())
 label = st.selectbox("目的変数を選択してください",list(df_train.columns))
 st.write("Summary of target variable")
 st.table(df_train[label].describe())
-save_path = 'agModels-predictClass'  # specifies folder to store trained models
-predictor = TabularPredictor(label=label, path=save_path).fit(df_train)
 
 ##########################################################################################
 #                                          Test                                          #
-##########################################################################################                                          
-test_data = st.file_uploader("テストデータを読み込んでください",type = "csv")
-df_test = pd.read_csv(test_data)
-y_test = df_test[label]  # values to predict
-test_data_nolab = df_test.drop(columns=[label])  # delete label column to prove we're not cheating
-predictor = TabularPredictor.load(save_path)  # unnecessary, just demonstrates how to load previously-trained predictor from file
-y_pred = predictor.predict(test_data_nolab)
-perf = predictor.evaluate_predictions(y_true=y_test, y_pred=y_pred, auxiliary_metrics=True)
-leaderboard = predictor.leaderboard(df_test, silent=True)
-st.dataframe(leaderboard)
+##########################################################################################
+run_pred = st.checkbox("AutoMLによる予測を実行")
 
-# Enter text for testing
-s = 'pd.DataFrame'
-sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
-                 'str': 'Hello Streamlit!',
-                 'int': 17,
-                 'float': 17.0,
-                 'dict': {1: 'a', 'x': [2, 'c'], 2: {'b': 2}},
-                 'bool': True,
-                 'pd.DataFrame':y_pred}
-sample_dtypes = sample_dtypes
-# Download sample
-download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download predictor.csv')
-st.markdown(download_button_str, unsafe_allow_html=True)
+if agree == True :
+    save_path = 'agModels-predictClass'  # specifies folder to store trained models
+    predictor = TabularPredictor(label=label, path=save_path).fit(df_train)
+    y_test = df_test[label]  # values to predict
+    test_data_nolab = df_test.drop(columns=[label])  # delete label column to prove we're not cheating
+    predictor = TabularPredictor.load(save_path)  # unnecessary, just demonstrates how to load previously-trained predictor from file
+    y_pred = predictor.predict(test_data_nolab)
+    perf = predictor.evaluate_predictions(y_true=y_test, y_pred=y_pred, auxiliary_metrics=True)
+    leaderboard = predictor.leaderboard(df_test, silent=True)
+    st.dataframe(leaderboard)
+
+    # Enter text for testing
+    s = 'pd.DataFrame'
+    sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
+                     'str': 'Hello Streamlit!',
+                     'int': 17,
+                     'float': 17.0,
+                     'dict': {1: 'a', 'x': [2, 'c'], 2: {'b': 2}},
+                     'bool': True,
+                     'pd.DataFrame':y_pred}
+    sample_dtypes = sample_dtypes
+    # Download sample
+    download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download predictor.csv')
+    st.markdown(download_button_str, unsafe_allow_html=True)
+else:
+    st.write("※チェックを入れると教師データによるモデルの学習とテストデータへの予測結果の反映が行われます")
