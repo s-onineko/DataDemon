@@ -127,5 +127,20 @@ predictor = TabularPredictor.load(save_path)  # unnecessary, just demonstrates h
 y_pred = predictor.predict(test_data_nolab)
 print("Predictions:  \n", y_pred)
 perf = predictor.evaluate_predictions(y_true=y_test, y_pred=y_pred, auxiliary_metrics=True)
-
-st.dataframe(predictor.leaderboard(df_test, silent=True))	  
+leaderboard = predictor.leaderboard(df_test, silent=True)
+st.dataframe(leaderboard)
+model_name = st.selectbox("予測に使用するモデルを選択してください",list(leaderboard['model']))
+df_predictor = predictor.predict(test_data, model=model_name)
+# Enter text for testing
+s = 'pd.DataFrame'
+sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
+                 'str': 'Hello Streamlit!',
+                 'int': 17,
+                 'float': 17.0,
+                 'dict': {1: 'a', 'x': [2, 'c'], 2: {'b': 2}},
+                 'bool': True,
+                 'pd.DataFrame':df_predictor}
+sample_dtypes = sample_dtypes
+# Download sample
+download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download df_predictor.csv')
+st.markdown(download_button_str, unsafe_allow_html=True)
