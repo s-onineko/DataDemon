@@ -1,5 +1,5 @@
 autogluon.tabular
-sklearn.model_selection
+sklearn
 streamlit
 pandas
 numpy
