@@ -74,7 +74,7 @@ def file_selector(folder_path='.'):
     return os.path.join(folder_path, selected_filename)
 
 ##########################################################################################
-#                               サンプルデータダウンロード                                   #
+#                                      Sampledata                                        #
 ##########################################################################################
 
 if st.checkbox('テスト用サンプルデータをダウンロードするにはチェックを入れてください'):
@@ -91,7 +91,7 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
                      'pd.DataFrame':train_data}
     sample_dtypes = sample_dtypes
     # Download sample
-    download_button_str = download_button(sample_dtypes[s], "amazon_aws_traindata.csv", f'Click here to download {amazon_aws_traindata.csv}')
+    download_button_str = download_button(sample_dtypes[s], "amazon_aws_traindata.csv", f'Click here to download {"amazon_aws_traindata.csv"}')
     st.markdown(download_button_str, unsafe_allow_html=True)
     # Enter text for testing
     s = 'pd.DataFrame'
@@ -104,7 +104,7 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
                      'pd.DataFrame':test_data}
     sample_dtypes = sample_dtypes
     # Download sample
-    download_button_str = download_button(sample_dtypes[s], "amazon_aws_testdata.csv", f'Click here to download {amazon_aws_testdata.csv}')
+    download_button_str = download_button(sample_dtypes[s], "amazon_aws_testdata.csv", f'Click here to download {"amazon_aws_testdata.csv"}')
     st.markdown(download_button_str, unsafe_allow_html=True)
 
 
