@@ -113,19 +113,5 @@ df = pd.read_csv(df_train)
 
 st.dataframe(df.head())
 # 前処理
-target = st.selectbox("目的変数を選択してください",list(df.columns))
-features = st.multiselect("説明変数を選択してください",list(df.columns))
-df_list = [target] + features
-df = df.loc[:,df_list]
-
-########
-states_list = ['Alabama','New York','Texas','Washington']
-l2=[]
-l2=states_list[:]
-l2.append('Select all')
-state_dropdown = st.multiselect('State',l2)
-
-if 'Select all' in state_dropdown :
-	state_dropdown=states_list
-	
-st.write(state_dropdown)
+label = st.selectbox("目的変数を選択してください",list(df.columns))
+print("Summary of class variable: \n", train_data[label].describe())
