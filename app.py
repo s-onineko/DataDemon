@@ -129,7 +129,7 @@ run_pred = st.checkbox("AutoMLによる予測を実行")
 
 if run_pred == True :
     save_path = 'agModels-predictClass'  # specifies folder to store trained models
-    predictor = TabularPredictor(label=label, path=save_path).fit(df_train, presets='best_quality',time_limits=300)
+    predictor = TabularPredictor(label=label, path=save_path).fit(df_train, presets='best_quality')
     y_test = df_test[label]  # values to predict
     test_data_nolab = df_test.drop(columns=[label])  # delete label column to prove we're not cheating
     predictor = TabularPredictor.load(save_path)  # unnecessary, just demonstrates how to load previously-trained predictor from file
