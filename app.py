@@ -112,7 +112,7 @@ df = pd.read_csv(df_test)
 
 st.dataframe(df.head())
 # 前処理
-target = st.multiselect("目的変数を選択してください",list(df.columns))
+target = st.selectbox("目的変数を選択してください",list(df.columns))
 features = st.multiselect("説明変数を選択してください",list(df.columns))
 df_list = target + features
 st.write(df_list)
