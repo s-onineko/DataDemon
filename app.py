@@ -12,7 +12,6 @@ from autogluon.tabular import TabularDataset, TabularPredictor
 
 
 st.title('Data Demon')
-st.
 
 ##########################################################################################
 #                                   file_download_button                                 #
@@ -103,8 +102,8 @@ if st.checkbox('テストデータをダウンロードするにはチェック�
     st.markdown(download_button_str, unsafe_allow_html=True)
 
     
-df_test = st.file_uploader("分析用のCSVファイルの読み込み",type = "csv")
-df = pd.read_csv(df_test)
+df_train = st.file_uploader("教師データを読み込んでください",type = "csv")
+df = pd.read_csv(df_train)
 
 st.dataframe(df.head())
 # 前処理
@@ -112,7 +111,5 @@ target = st.selectbox("目的変数を選択してください",list(df.columns)
 features = st.multiselect("説明変数を選択してください",list(df.columns))
 df_list = [target] + features
 df = df.loc[:,df_list]
-#exp1 = setup(df, target = target)
-best_model = compare_models(n_select=6)
-#st.table(compare_models())
+
 
