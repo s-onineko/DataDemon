@@ -1,21 +1,18 @@
 # -*- coding: utf-8 -*-
 import streamlit as st
-import pandas
-import numpy
-import warnings
-warnings.filterwarnings("ignore")
-from pycaret.classification import *
-from sklearn.datasets import load_iris
 import pandas as pd
-import os
 import datetime
 import base64
 import pickle
 import uuid
 import re
 
+from autogluon.tabular import TabularDataset, TabularPredictor
+
+
 
 st.title('Data Demon')
+st.
 
 ##########################################################################################
 #                                   file_download_button                                 #
