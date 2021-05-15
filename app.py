@@ -9,8 +9,6 @@ import re
 
 from autogluon.tabular import TabularDataset, TabularPredictor
 
-
-
 st.title('Data Demon')
 
 ##########################################################################################
@@ -29,7 +27,6 @@ def download_button(object_to_download, download_filename, button_text, pickle_i
 
         elif isinstance(object_to_download, pd.DataFrame):
             object_to_download = object_to_download.to_csv(index=True)
-
         # Try JSON encode for everything else
         else:
             object_to_download = json.dumps(object_to_download)
@@ -76,7 +73,6 @@ def file_selector(folder_path='.'):
 ##########################################################################################
 #                                      Sampledata                                        #
 ##########################################################################################
-
 if st.checkbox('テスト用サンプルデータをダウンロードするにはチェックを入れてください'):
     train_data = TabularDataset('https://autogluon.s3.amazonaws.com/datasets/Inc/train.csv')
     test_data = TabularDataset('https://autogluon.s3.amazonaws.com/datasets/Inc/test.csv')
@@ -91,7 +87,7 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
                      'pd.DataFrame':train_data}
     sample_dtypes = sample_dtypes
     # Download sample
-    download_button_str = download_button(sample_dtypes[s], "amazon_aws_traindata.csv", f'Click here to download {"amazon_aws_traindata.csv"}')
+    download_button_str = download_button(sample_dtypes[s], "amazon_aws_traindata.csv", 'Click here to download amazon_aws_traindata.csv')
     st.markdown(download_button_str, unsafe_allow_html=True)
     # Enter text for testing
     s = 'pd.DataFrame'
@@ -104,7 +100,7 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
                      'pd.DataFrame':test_data}
     sample_dtypes = sample_dtypes
     # Download sample
-    download_button_str = download_button(sample_dtypes[s], "amazon_aws_testdata.csv", f'Click here to download {"amazon_aws_testdata.csv"}')
+    download_button_str = download_button(sample_dtypes[s], "amazon_aws_testdata.csv", 'Click here to download {"amazon_aws_testdata.csv')
     st.markdown(download_button_str, unsafe_allow_html=True)
 
 ##########################################################################################
