@@ -110,8 +110,8 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
 #                                       Load_dataset                                     #
 ##########################################################################################
 train_data = st.file_uploader("教師データを読み込んでください",type = "csv")
-df_train = pd.read_csv(train_data)
-train_data, test_data = train_test_split(namelist, test_size = 0.3, random_state = 111)
+train_data = pd.read_csv(train_data)
+df_train, df_test = train_test_split(train_data, test_size = 0.3, random_state = 111)
 # test_data = st.file_uploader("テストデータを読み込んでください",type = "csv")
 # df_test = pd.read_csv(test_data)
 
