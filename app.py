@@ -146,5 +146,6 @@ if run_pred == True :
     # Download sample
     download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download predictor.csv')
     st.markdown(download_button_str, unsafe_allow_html=True)
+    SummaryOfModels.html
 else:
     st.write("※チェックを入れると教師データによるモデルの学習とテストデータへの予測結果の反映が行われます")
