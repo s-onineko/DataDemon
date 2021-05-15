@@ -111,3 +111,8 @@ df_test = st.file_uploader("分析用のCSVファイルの読み込み",type = "
 df = pd.read_csv(df_test)
 
 st.dataframe(df.head())
+# 前処理
+target = st.multiselect("目的変数を選択してください",list(df.columns))
+features = st.multiselect("説明変数を選択してください",list(df.columns))
+
+exp1 = setup(df, target = 'target')
