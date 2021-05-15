@@ -125,12 +125,10 @@ y_test = df_test[label]  # values to predict
 test_data_nolab = df_test.drop(columns=[label])  # delete label column to prove we're not cheating
 predictor = TabularPredictor.load(save_path)  # unnecessary, just demonstrates how to load previously-trained predictor from file
 y_pred = predictor.predict(test_data_nolab)
-print("Predictions:  \n", y_pred)
 perf = predictor.evaluate_predictions(y_true=y_test, y_pred=y_pred, auxiliary_metrics=True)
 leaderboard = predictor.leaderboard(df_test, silent=True)
 st.dataframe(leaderboard)
-model_name = st.selectbox("予測に使用するモデルを選択してください",list(leaderboard['model']))
-df_predictor = predictor.predict(test_data, model=model_name)
+
 # Enter text for testing
 s = 'pd.DataFrame'
 sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
@@ -139,7 +137,7 @@ sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
                  'float': 17.0,
                  'dict': {1: 'a', 'x': [2, 'c'], 2: {'b': 2}},
                  'bool': True,
-                 'pd.DataFrame':df_predictor}
+                 'pd.DataFrame':y_pred}
 sample_dtypes = sample_dtypes
 # Download sample
 download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download df_predictor.csv')
