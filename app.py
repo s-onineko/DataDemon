@@ -149,10 +149,9 @@ if run_pred == True :
                      'pd.DataFrame':y_predproba}
     sample_dtypes = sample_dtypes
     # Download predictor
+    st.write("推論結果をダウンロードします。※分類問題においては推論結果は確率で表示されています。")
     download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download predictor.csv')
     st.markdown(download_button_str, unsafe_allow_html=True)
-    st.write(predictor.fit_summary())
-    
-    
+    st.write(predictor.fit_summary())    
 else:
     st.write("※チェックを入れると教師データによるモデルの学習とテストデータへの予測結果の反映が行われます")
