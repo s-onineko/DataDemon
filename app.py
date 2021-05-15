@@ -20,11 +20,12 @@ st.title('Data Demon')
 '''
 st.write("AutoGluonで実行される内容")
 st.code('''
-    1.データの前処理(各カラムを数値・カテゴリ・テキストに分類)
-    2.ラベルカラムから推論タスクを決定(分類・回帰)
-    3.データの分離(eg.disjoint training/validation sets, k-fold split)
-    4.各モデルを個々に学習(Random Forest, KNN, LightGBM, NNetc.)
-    5.最適化されたアンサンブルを作成
+    1. データの前処理(各カラムを数値・カテゴリ・テキストに分類)
+    2. ラベルカラムから推論タスクを決定(分類・回帰)
+    3. データの分離(eg.disjoint training/validation sets, k-fold split)
+    4. 各モデルを個々に学習(Random Forest, KNN, LightGBM, NNetc.)
+    5. 最適化されたアンサンブルを作成
+    6. 作成したモデルを推論用データに適用、予測結果を出力
     '''
     )
 
