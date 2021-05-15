@@ -108,9 +108,11 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
 #                                       Load_dataset                                     #
 ##########################################################################################
 train_data = st.file_uploader("教師データを読み込んでください",type = "csv")
-test_data = st.file_uploader("テストデータを読み込んでください",type = "csv")
 df_train = pd.read_csv(train_data)
-df_test = pd.read_csv(test_data)
+train_data, test_data = train_test_split(namelist, test_size=0.3)
+# test_data = st.file_uploader("テストデータを読み込んでください",type = "csv")
+# df_test = pd.read_csv(test_data)
+
 # 読み込んだデータのサマリー
 st.dataframe(df_train.head())
 label = st.selectbox("目的変数を選択してください",list(df_train.columns))
@@ -124,7 +126,7 @@ run_pred = st.checkbox("AutoMLによる予測を実行")
 
 if run_pred == True :
     save_path = 'agModels-predictClass'  # specifies folder to store trained models
-    predictor = TabularPredictor(label=label, path=save_path).fit(df_train)
+    predictor = TabularPredictor(label=label, path=save_path, presets='best_quality', time_limit=600).fit(df_train)
     y_test = df_test[label]  # values to predict
     test_data_nolab = df_test.drop(columns=[label])  # delete label column to prove we're not cheating
     predictor = TabularPredictor.load(save_path)  # unnecessary, just demonstrates how to load previously-trained predictor from file
@@ -147,5 +149,8 @@ if run_pred == True :
     download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download predictor.csv')
     st.markdown(download_button_str, unsafe_allow_html=True)
     st.write(predictor.fit_summary())
+    
+    #y_predproba = predictor.predict_proba(test_data)
+    
 else:
     st.write("※チェックを入れると教師データによるモデルの学習とテストデータへの予測結果の反映が行われます")
