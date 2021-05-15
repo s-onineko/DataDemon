@@ -118,4 +118,14 @@ features = st.multiselect("説明変数を選択してください",list(df.colu
 df_list = [target] + features
 df = df.loc[:,df_list]
 
+########
+states_list = ['Alabama','New York','Texas','Washington']
+l2=[]
+l2=states_list[:]
+l2.append('Select all')
+state_dropdown = st.multiselect('State',l2)
 
+if 'Select all' in state_dropdown :
+	state_dropdown=states_list
+	
+st.write(state_dropdown)
