@@ -158,4 +158,4 @@ if run_pred == True :
     st.markdown(download_button_str, unsafe_allow_html=True)
     st.write(predictor.fit_summary())    
 else:
-    st.write("※チェックを入れると教師データによるモデルの学習とテストデータへの予測結果の反映が行われます")
+    st.write("※チェックを入れると教師データによる学習モデルの作成と予測・推論が行われます")
