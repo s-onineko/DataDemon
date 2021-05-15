@@ -148,8 +148,12 @@ st.table(df_train[label].describe())
 ##########################################################################################
 #                                          Test                                          #
 ##########################################################################################
+'''
+***
+'''
+st.write("※実行中の計算内容は右下の[Manage app]ボタンをクリックすることで確認できます")
 run_pred = st.checkbox("AutoML/AutoGluonの実行")
-st.write("実行中の計算内容は右下の[Manage app]ボタンをクリックすることで確認できます")
+
 
 if run_pred == True :
     save_path = 'agModels-predictClass'  # specifies folder to store trained models
