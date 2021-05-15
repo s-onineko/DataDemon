@@ -114,5 +114,7 @@ st.dataframe(df.head())
 # 前処理
 target = st.multiselect("目的変数を選択してください",list(df.columns))
 features = st.multiselect("説明変数を選択してください",list(df.columns))
-
+df_list = target + features
+df = df.loc[:,df_list]
+st.dataframe(df.head())
 exp1 = setup(df, target = 'target')
