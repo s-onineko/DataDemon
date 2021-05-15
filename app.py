@@ -74,34 +74,40 @@ def file_selector(folder_path='.'):
     return os.path.join(folder_path, selected_filename)
 
 ##########################################################################################
-#                                         Pycaret                                        #
+#                               サンプルデータダウンロード                                   #
 ##########################################################################################
 
-iris = load_iris()
-X = pd.DataFrame(iris.data, columns=iris.feature_names)
-y = pd.DataFrame(iris.target, columns=["target"])
-df = pd.concat([X,y], axis=1)
-
-if st.checkbox('テストデータをダウンロードするにはチェックを入れてください'):
-    st.write('ファイル名を入力後、ダウンロードボタンを押してください。ダウンロードしたファイルを用いてテストすることができます。')
+if st.checkbox('テスト用サンプルデータをダウンロードするにはチェックを入れてください'):
+    train_data = TabularDataset('https://autogluon.s3.amazonaws.com/datasets/Inc/train.csv')
+    test_data = TabularDataset('https://autogluon.s3.amazonaws.com/datasets/Inc/test.csv')
     # Enter text for testing
     s = 'pd.DataFrame'
-    filename = st.text_input('Enter output filename and ext (e.g. my-question.csv, )', 'my-question.csv')
-    #pickle_it = st.checkbox('Save as pickle file')
     sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
                      'str': 'Hello Streamlit!',
                      'int': 17,
                      'float': 17.0,
                      'dict': {1: 'a', 'x': [2, 'c'], 2: {'b': 2}},
                      'bool': True,
-                     'pd.DataFrame': df}
+                     'pd.DataFrame':train_data}
     sample_dtypes = sample_dtypes
-
     # Download sample
-    download_button_str = download_button(sample_dtypes[s], filename, f'Click here to download {filename}', pickle_it=False)
+    download_button_str = download_button(sample_dtypes[s], "amazon_aws_traindata.csv", f'Click here to download {amazon_aws_traindata.csv}')
+    st.markdown(download_button_str, unsafe_allow_html=True)
+    # Enter text for testing
+    s = 'pd.DataFrame'
+    sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
+                     'str': 'Hello Streamlit!',
+                     'int': 17,
+                     'float': 17.0,
+                     'dict': {1: 'a', 'x': [2, 'c'], 2: {'b': 2}},
+                     'bool': True,
+                     'pd.DataFrame':test_data}
+    sample_dtypes = sample_dtypes
+    # Download sample
+    download_button_str = download_button(sample_dtypes[s], "amazon_aws_testdata.csv", f'Click here to download {amazon_aws_testdata.csv}')
     st.markdown(download_button_str, unsafe_allow_html=True)
 
-    
+
 df_train = st.file_uploader("教師データを読み込んでください",type = "csv")
 df = pd.read_csv(df_train)
 
