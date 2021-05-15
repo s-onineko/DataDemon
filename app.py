@@ -25,7 +25,7 @@ st.code('''
     3. データの分離(eg.disjoint training/validation sets, k-fold split)
     4. 各モデルを個々に学習(Random Forest, KNN, LightGBM, NNetc.)
     5. 最適化されたアンサンブルを作成
-    6. 作成したモデルを推論用データに適用、予測結果を出力
+    6. 作成したモデルをテストデータに適用、予測結果を出力
     '''
     )
 
