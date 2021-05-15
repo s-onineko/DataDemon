@@ -115,6 +115,7 @@ st.dataframe(df.head())
 target = st.multiselect("目的変数を選択してください",list(df.columns))
 features = st.multiselect("説明変数を選択してください",list(df.columns))
 df_list = target + features
+st.write(df_list)
 df = df.loc[:,df_list]
 st.dataframe(df.head())
 
