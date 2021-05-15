@@ -94,8 +94,8 @@ def file_selector(folder_path='.'):
 #                                      Sampledata                                        #
 ##########################################################################################
 if st.checkbox('サンプルデータをダウンロードするにはチェックを入れてください'):
-    train_data = TabularDataset('https://autogluon.s3.amazonaws.com/datasets/Inc/train.csv')
-    test_data = TabularDataset('https://autogluon.s3.amazonaws.com/datasets/Inc/test.csv')
+    train_data = pd.read_csv("testdata/amazon_aws_traindata_教師データ(カラム数削減ver).csv")#TabularDataset('https://autogluon.s3.amazonaws.com/datasets/Inc/train.csv')
+    test_data = pd.read_csv("testdata/amazon_aws_testdata_テストデータ_正解ラベル付.csv")#TabularDataset('https://autogluon.s3.amazonaws.com/datasets/Inc/test.csv')
     # Enter text for testing
     s = 'pd.DataFrame'
     sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
@@ -152,7 +152,7 @@ st.table(df_train[label].describe())
 ***
 '''
 st.write("※実行中の計算内容は右下の[Manage app]ボタンをクリックすることで確認できます")
-st.write("(LightGBMやXGBoostなど勾配ブースティング決定木系のアルゴリズムは計算に5分以上かかる場合もございます)")
+st.write("(計算時間：サンプルデータを用いた場合で約5分です)")
 run_pred = st.checkbox("AutoML/AutoGluonの実行")
 
 
