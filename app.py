@@ -111,7 +111,8 @@ df_train = pd.read_csv(train_data)
 # 読み込んだデータのサマリー
 st.dataframe(df_train.head())
 label = st.selectbox("目的変数を選択してください",list(df_train.columns))
-st.table("Summary of target variable: \n", df_train[label].describe())
+st.write("Summary of target variable")
+st.table(df_train[label].describe())
 save_path = 'agModels-predictClass'  # specifies folder to store trained models
 predictor = TabularPredictor(label=label, path=save_path).fit(df_train)
 
