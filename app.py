@@ -117,4 +117,6 @@ features = st.multiselect("説明変数を選択してください",list(df.colu
 df_list = target + features
 df = df.loc[:,df_list]
 st.dataframe(df.head())
+
 exp1 = setup(df, target = 'target')
+st.table(compare_models())
