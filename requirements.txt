@@ -1,4 +1,4 @@
-pycaret
+autogluon.tabular
 streamlit
 pandas
 numpy
