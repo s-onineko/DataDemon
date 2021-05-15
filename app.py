@@ -6,6 +6,7 @@ import base64
 import pickle
 import uuid
 import re
+import json
 
 from autogluon.tabular import TabularDataset, TabularPredictor
 
