@@ -180,7 +180,7 @@ if run_pred == True :
     sample_dtypes = sample_dtypes
     # Download predictor
     st.write("予測・分類結果をダウンロードします。※分類問題においては各ラベルに対する確率で表示されています。")
-    download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download predictor.csv')
+    download_button_str = download_button(sample_dtypes[s], "prediction.csv", 'Click here to download prediction.csv')
     st.markdown(download_button_str, unsafe_allow_html=True)
     st.write(predictor.fit_summary())    
 else:
