@@ -114,4 +114,4 @@ df = pd.read_csv(df_train)
 st.dataframe(df.head())
 # 前処理
 label = st.selectbox("目的変数を選択してください",list(df.columns))
-print("Summary of class variable: \n", train_data[label].describe())
+st.write("Summary of class variable: \n", train_data[label].describe())
