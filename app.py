@@ -119,4 +119,6 @@ st.write("Summary of target variable: \n", train_data[label].describe())
 
 save_path = 'agModels-predictClass'  # specifies folder to store trained models
 predictor = TabularPredictor(label=label, path=save_path).fit(train_data)
-st.info(predictor)
+st.info()
+st.write("warning")
+st.warning()
