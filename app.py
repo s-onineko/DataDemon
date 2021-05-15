@@ -128,32 +128,4 @@ y_pred = predictor.predict(test_data_nolab)
 print("Predictions:  \n", y_pred)
 perf = predictor.evaluate_predictions(y_true=y_test, y_pred=y_pred, auxiliary_metrics=True)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-										  
-
+st.table(predictor.leaderboard(df_test, silent=True))	  
