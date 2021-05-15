@@ -152,6 +152,7 @@ st.table(df_train[label].describe())
 ***
 '''
 st.write("※実行中の計算内容は右下の[Manage app]ボタンをクリックすることで確認できます")
+st.write("(LightGBMやXGBoostなど勾配ブースティング決定木系のアルゴリズムは計算に5分以上かかる場合もございます)")
 run_pred = st.checkbox("AutoML/AutoGluonの実行")
 
 
