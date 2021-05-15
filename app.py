@@ -119,5 +119,5 @@ df_list = target + features
 st.write(df_list)
 df = df.loc[:,df_list]
 
-exp1 = setup(df, target = 'target')
-st.table(compare_models())
+#exp1 = setup(df, target = 'target')
+#st.table(compare_models())
