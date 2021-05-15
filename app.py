@@ -113,8 +113,8 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
 train_data = st.file_uploader("教師（学習用）データを読み込んでください",type = "csv")
 train_data = pd.read_csv(train_data)
 test_size = st.slider("テストデータに分割するデータのサイズを選択してください(単位：%)", 10, 90, 30, 10)/100
-st.write("教師データのレコード数:"+ str(len(train_data)*(1-test_size)))
-st.write("テストデータのレコード数:"+ str(len(train_data)*(test_size)))    
+st.write("教師データのレコード数　　:　"+ str(round(len(train_data)*(1-test_size))))
+st.write("テストデータのレコード数　:　"+ str(round(len(train_data)*(test_size))))    
 df_train, df_test = train_test_split(train_data, test_size = test_size, random_state = 111)
 pred_data = st.file_uploader("テスト(推論用)データを読み込んでください",type = "csv")
 df_pred = pd.read_csv(pred_data)
