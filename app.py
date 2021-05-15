@@ -138,7 +138,7 @@ st.write("検証データのレコード数　  :　"+ str(round(len(train_data)
 df_train, df_test = train_test_split(train_data, test_size = test_size, random_state = 111)
 pred_data = st.file_uploader("テストデータを読み込んでください",type = "csv")
 df_pred = pd.read_csv(pred_data)
-　
+
 # 読み込んだデータのサマリー
 st.dataframe(df_train.head())
 label = st.selectbox("目的変数を選択してください",list(df_train.columns))
