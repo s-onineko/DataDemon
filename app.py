@@ -109,3 +109,5 @@ if st.checkbox('テストデータをダウンロードするにはチェック�
     
 df_test = st.file_uploader("分析用のCSVファイルの読み込み",type = "csv")
 df = pd.read_csv(df_test)
+
+st.dataframe(df.head())
