@@ -107,18 +107,56 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
     download_button_str = download_button(sample_dtypes[s], "amazon_aws_testdata.csv", f'Click here to download {"amazon_aws_testdata.csv"}')
     st.markdown(download_button_str, unsafe_allow_html=True)
 
-
-df_train = st.file_uploader("教師データを読み込んでください",type = "csv")
-df = pd.read_csv(df_train)
-
+##########################################################################################
+#                                         Train                                          #
+##########################################################################################
+df_data = st.file_uploader("教師データを読み込んでください",type = "csv")
+df_train = pd.read_csv(train_data)
 # 読み込んだデータのサマリー
-st.dataframe(df.head())
-label = st.selectbox("目的変数を選択してください",list(df.columns))
+st.dataframe(df_train.head())
+label = st.selectbox("目的変数を選択してください",list(df_train.columns))
 st.write("Summary of target variable: \n", train_data[label].describe())
-
-
 save_path = 'agModels-predictClass'  # specifies folder to store trained models
-predictor = TabularPredictor(label=label, path=save_path).fit(train_data)
-st.info()
-st.write("warning")
-st.warning()
+predictor = TabularPredictor(label=label, path=save_path).fit(df_train)
+
+##########################################################################################
+#                                          Test                                          #
+##########################################################################################                                          
+test_data = st.file_uploader("テストデータを読み込んでください",type = "csv")
+df_test = pd.read_csv(test_data)
+y_test = df_test[label]  # values to predict
+test_data_nolab = df_test.drop(columns=[label])  # delete label column to prove we're not cheating
+predictor = TabularPredictor.load(save_path)  # unnecessary, just demonstrates how to load previously-trained predictor from file
+y_pred = predictor.predict(test_data_nolab)
+print("Predictions:  \n", y_pred)
+perf = predictor.evaluate_predictions(y_true=y_test, y_pred=y_pred, auxiliary_metrics=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										  
+
