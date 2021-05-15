@@ -140,5 +140,5 @@ sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
                  'pd.DataFrame':y_pred}
 sample_dtypes = sample_dtypes
 # Download sample
-download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download df_predictor.csv')
+download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download predictor.csv')
 st.markdown(download_button_str, unsafe_allow_html=True)
