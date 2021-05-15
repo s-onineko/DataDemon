@@ -109,11 +109,11 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
 ##########################################################################################
 #                                       Load_dataset                                     #
 ##########################################################################################
-train_data = st.file_uploader("教師データを読み込んでください",type = "csv")
+train_data = st.file_uploader("教師（学習用）データを読み込んでください",type = "csv")
 train_data = pd.read_csv(train_data)
 df_train, df_test = train_test_split(train_data, test_size = 0.3, random_state = 111)
-# test_data = st.file_uploader("テストデータを読み込んでください",type = "csv")
-# df_test = pd.read_csv(test_data)
+pred_data = st.file_uploader("テスト(推論用)データを読み込んでください",type = "csv")
+df_pred = pd.read_csv(pred_data)
 
 # 読み込んだデータのサマリー
 st.dataframe(df_train.head())
@@ -136,7 +136,8 @@ if run_pred == True :
     perf = predictor.evaluate_predictions(y_true=y_test, y_pred=y_pred, auxiliary_metrics=True)
     leaderboard = predictor.leaderboard(df_test, silent=True)
     st.dataframe(leaderboard)
-
+    y_predproba = predictor.predict_proba(df_pred)
+    
     # Enter text for testing
     s = 'pd.DataFrame'
     sample_dtypes = {'list': [1,'a', [2, 'c'], {'b': 2}],
@@ -145,14 +146,13 @@ if run_pred == True :
                      'float': 17.0,
                      'dict': {1: 'a', 'x': [2, 'c'], 2: {'b': 2}},
                      'bool': True,
-                     'pd.DataFrame':y_pred}
+                     'pd.DataFrame':y_predproba}
     sample_dtypes = sample_dtypes
-    # Download sample
+    # Download predictor
     download_button_str = download_button(sample_dtypes[s], "predictor.csv", 'Click here to download predictor.csv')
     st.markdown(download_button_str, unsafe_allow_html=True)
     st.write(predictor.fit_summary())
     
-    #y_predproba = predictor.predict_proba(test_data)
     
 else:
     st.write("※チェックを入れると教師データによるモデルの学習とテストデータへの予測結果の反映が行われます")
