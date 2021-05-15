@@ -13,6 +13,22 @@ from autogluon.tabular import TabularDataset, TabularPredictor
 from sklearn.model_selection import train_test_split
 
 st.title('Data Demon')
+'''
+このWebアプリではAWSが提供する機械学習フレームワークAutoGluonを利用してテストすることができます。
+必要なものは「機械学習モデル構築用のテーブルデータ（教師データ）」と「予測・分類を実施したいテーブルデータ（推論データ）」の2つのみです。
+複数の機械学習モデルの中から最適なモデルを自動で選び、推論データに対して予測・分類した結果を出力します。
+'''
+st.write("AutoGluonで実行される内容")
+st.code('''
+    1.データの前処理(各カラムを数値・カテゴリ・テキストに分類)
+    2.ラベルカラムから推論タスクを決定(分類・回帰)
+    3.データの分離(eg.disjoint training/validation sets, k-fold split)
+    4.各モデルを個々に学習(Random Forest, KNN, LightGBM, NNetc.)
+    5.最適化されたアンサンブルを作成
+    '''
+    )
+
+
 
 ##########################################################################################
 #                                   file_download_button                                 #
@@ -116,7 +132,7 @@ test_size = st.slider("テストデータに分割するデータのサイズを
 st.write("教師データのレコード数　　:　"+ str(round(len(train_data)*(1-test_size))))
 st.write("テストデータのレコード数　:　"+ str(round(len(train_data)*(test_size))))    
 df_train, df_test = train_test_split(train_data, test_size = test_size, random_state = 111)
-pred_data = st.file_uploader("予測・推論用データを読み込んでください",type = "csv")
+pred_data = st.file_uploader("推論用データを読み込んでください",type = "csv")
 df_pred = pd.read_csv(pred_data)
 
 # 読み込んだデータのサマリー
@@ -158,4 +174,4 @@ if run_pred == True :
     st.markdown(download_button_str, unsafe_allow_html=True)
     st.write(predictor.fit_summary())    
 else:
-    st.write("※チェックを入れると教師データによる学習モデルの作成と予測・推論用データに対する計算が行われます")
+    st.write("※チェックを入れると教師データによる学習モデルの作成と推論用データに対する計算が行われます")
