@@ -111,7 +111,12 @@ if st.checkbox('テスト用サンプルデータをダウンロードするに�
 df_train = st.file_uploader("教師データを読み込んでください",type = "csv")
 df = pd.read_csv(df_train)
 
+# 読み込んだデータのサマリー
 st.dataframe(df.head())
-# 前処理
 label = st.selectbox("目的変数を選択してください",list(df.columns))
-st.write("Summary of class variable: \n", train_data[label].describe())
+st.write("Summary of target variable: \n", train_data[label].describe())
+
+
+save_path = 'agModels-predictClass'  # specifies folder to store trained models
+predictor = TabularPredictor(label=label, path=save_path).fit(train_data)
+st.write(predictor)
