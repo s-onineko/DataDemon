@@ -9,6 +9,7 @@ import re
 import json
 
 from autogluon.tabular import TabularDataset, TabularPredictor
+from sklearn.model_selection import train_test_split
 
 st.title('Data Demon')
 
