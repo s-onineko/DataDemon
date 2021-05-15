@@ -122,7 +122,7 @@ st.table(df_train[label].describe())
 ##########################################################################################
 run_pred = st.checkbox("AutoMLによる予測を実行")
 
-if agree == True :
+if run_pred == True :
     save_path = 'agModels-predictClass'  # specifies folder to store trained models
     predictor = TabularPredictor(label=label, path=save_path).fit(df_train)
     y_test = df_test[label]  # values to predict
