@@ -6,3 +6,4 @@ numpy
 sklearn
 datetime
 lightgbm
+torch==1.6.0
