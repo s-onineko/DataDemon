@@ -1,7 +1,6 @@
 # DataDemon
-### https://share.streamlit.io/s-onineko/datademon/main/app.py
-#
 ![スライド1](https://user-images.githubusercontent.com/70475483/118382393-dc429000-b62f-11eb-94e6-bb84e5cb15af.JPG)
+### https://share.streamlit.io/s-onineko/datademon/main/app.py
 #### このWebアプリではAWSが提供する機械学習フレームワークAutoGluonを利用してテストすることができます。
 #### 必要なものは「機械学習モデル構築用のデータ（教師データ）」と「予測・分類を実施するデータ（テストデータ）」の2つのみです。
 #### 複数の機械学習モデルの中から最適なモデルを自動で選び、テストデータに対して予測・分類した結果を出力します。
