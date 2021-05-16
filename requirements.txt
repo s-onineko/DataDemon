@@ -11,3 +11,4 @@ fastai==2.*
 xgboost
 mxnet
 mxnet_cu101
+Image
