@@ -8,11 +8,12 @@ import uuid
 import re
 import json
 import lightgbm
-
+from PIL import Image
 from autogluon.tabular import TabularDataset, TabularPredictor
 from sklearn.model_selection import train_test_split
 
-st.title('Data Demon')
+image_1 = Image.open("header.png")
+st.image(image_1, use_column_width=True)
 '''
 このWebアプリではAWSが提供する機械学習フレームワークAutoGluonを利用してテストすることができます。
 必要なものは「機械学習モデル構築用のデータ（教師データ）」と「予測・分類を実施するデータ（テストデータ）」の2つのみです。
